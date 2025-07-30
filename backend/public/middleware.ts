@@ -1,6 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 // import { JWT_PASS } from './config';
+import dotenv from "dotenv";
+dotenv.config();
 let JWT_PASS = process.env.JWT_PASS;
 interface areq extends Request {
     userId?:string

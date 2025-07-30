@@ -6,7 +6,7 @@ import { userMiddleWare } from "./middleware";
 import cors from 'cors';
 // import { JWT_PASS } from "./config";
 
-let JWT_PASS = process.env.JWT_PASS;
+let JWT_PASS = process.env.JWT_PASS || "JWT_KEY";
 // import dotenv from "dotenv";
 const PORT = process.env.port || 3000;
 interface AuthenticatedRequest extends Request {
@@ -58,9 +58,6 @@ app.post(
 
 
 app.post("/api/v1/signin", async (req: AuthenticatedRequest, res: Response) => {
-  if (!JWT_PASS){
-    JWT_PASS = "Shivam@14115"
-  }
   try {
     const parsedData = signinSchema.parse(req.body);
     const { email, password } = parsedData;
