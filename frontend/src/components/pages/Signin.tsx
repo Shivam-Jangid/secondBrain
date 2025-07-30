@@ -23,6 +23,9 @@ export default function Signin() {
     alert("Redirecting to your brain...");
     navigate('/dashboard');
     }
+    else {
+      alert("invalid username or short password")
+    }
     }
     catch(err){
       alert('invalid username or password');

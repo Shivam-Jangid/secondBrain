@@ -11,7 +11,7 @@ export default function SignUp() {
   const navigate = useNavigate();
   async function signup (){
     const res = await axios.post(BACKEND_URL+"/api/v1/signup", {
-      email, username,password
+      email, username, password
     })
     if(res.status == 200) {
       alert('redirecting to signin page');
