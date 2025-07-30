@@ -28,11 +28,17 @@ const signinSchema = z.object({
   password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
-app.get('/api/v1/test', (req,res) => {
-
-  res.json({
-    msg:"get api ready"
-  })
+app.get('/api/v1/test', (req:Request,res:Response) => {
+  try{
+    res.json({
+      msg:"get api ready"
+    })
+  }
+  catch(err){
+    res.json({
+      err
+    })
+  }
 })
 
 app.post(
