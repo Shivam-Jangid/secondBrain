@@ -44,14 +44,14 @@
 2. **Install dependencies:**
    - For the frontend:
      ```bash
-     cd client
+     cd frontend
      npm install
      # or
      yarn install
      ```
    - For the backend:
      ```bash
-     cd ../server
+     cd ../backend
      npm install
      # or
      yarn install
@@ -70,12 +70,12 @@
 4. **Run the app:**
    - Start the backend server:
      ```bash
-     cd server
+     cd backend
      npm run dev
      ```
    - Start the frontend app:
      ```bash
-     cd ../client
+     cd ../frontend
      npm start
      ```
 
@@ -112,8 +112,8 @@
 
 ```
 Second Brain/
-  ├── client/       # React frontend (TypeScript, Tailwind CSS)
-  ├── server/       # Node.js backend (Express, TypeScript)
+  ├── frontend/       # React frontend (TypeScript, Tailwind CSS)
+  ├── backend/       # Node.js backend (Express, TypeScript)
   ├── README.md
   └── ...
 ```
