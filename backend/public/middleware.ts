@@ -3,7 +3,7 @@ import jwt, { JwtPayload } from 'jsonwebtoken';
 // import { JWT_PASS } from './config';
 import dotenv from "dotenv";
 dotenv.config();
-let JWT_PASS = process.env.JWT_PASS || "SHcdbjbcksdckc";
+let JWT_PASS = process.env.JWT_SECRET || "SHcdbjbcksdckc";
 interface areq extends Request {
     userId?:string
 }
