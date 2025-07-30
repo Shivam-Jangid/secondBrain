@@ -27,6 +27,14 @@ const signinSchema = z.object({
   email: z.string().email("Invalid email format"),
   password: z.string().min(6, "Password must be at least 6 characters"),
 });
+
+app.get('/api/v1/test', (req,res) => {
+
+  res.json({
+    msg:"get api ready"
+  })
+})
+
 app.post(
   "/api/v1/signup",
   async (req: Request, res: Response): Promise<any> => {
