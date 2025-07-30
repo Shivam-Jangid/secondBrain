@@ -1,7 +1,8 @@
 import mongoose, { Schema } from 'mongoose';
 import dotenv from "dotenv";
 dotenv.config();
-const dburl =process.env.DB_URL
+const dburl =process.env.DB_URL 
+
 
 const UserSchema = new Schema({
   username: { type: String, unique: true },

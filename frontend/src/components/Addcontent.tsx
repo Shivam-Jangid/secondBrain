@@ -23,13 +23,19 @@ export default function AddContentPopUp(props:AddContentPopUpProps){
         const description = descriptionRef.current?.value;
         const link = linkRef.current?.value;;
         try {
-            const response = await axios.post(`${BACKEND_URL}/api/v1/content`,{
-            title,description,link,tags:[],type
-        },{
-            headers:{
-                "Authorization":localStorage.getItem('token')
+            console.log(`${BACKEND_URL}/api/v1/content`);
+            const reqBody = {
+                title:title,
+                description:description,
+                link:link, 
+                tags:[],
+                type:type
             }
-        });
+            const response = await axios.post(`${BACKEND_URL}/api/v1/content`,reqBody,{
+                headers:{
+                    "authorization":localStorage.getItem('token')
+                }
+            });
         if(response.status == 200){
             alert('Content has been added');
             window.location.reload();

@@ -1,1 +1,1 @@
-export const BACKEND_URL = 'https://sec-brain-git-main-shivam-jangids-projects.vercel.app/';
+export const BACKEND_URL = 'http://localhost:3000';

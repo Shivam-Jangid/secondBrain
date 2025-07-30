@@ -4,11 +4,10 @@ import jwt from "jsonwebtoken";
 import { z } from "zod";
 import { userMiddleWare } from "./middleware";
 import cors from 'cors';
-// import { JWT_PASS } from "./config";
-
-let JWT_PASS = process.env.JWT_PASS || "JWT_KEY";
-// import dotenv from "dotenv";
-const PORT = process.env.port || 3000;
+import dotenv from "dotenv";
+dotenv.config();
+const JWT_PASS = process.env.JWT_SECRET || "SHcdbjbcksdckc";
+const PORT =3000;
 interface AuthenticatedRequest extends Request {
   userId?: string,
   username?:string
@@ -79,7 +78,6 @@ app.post("/api/v1/signin", async (req: AuthenticatedRequest, res: Response) => {
     const user = await UserModel.findOne({ email });
 
     if(user && user.password == password){
-
       const token = jwt.sign(
         {
           id: user._id,
@@ -88,6 +86,7 @@ app.post("/api/v1/signin", async (req: AuthenticatedRequest, res: Response) => {
         JWT_PASS
         
       );
+      console.log("signed in successfully");
       res.status(200).json({ msg: " User signed in successfully", token });
     }
     else if (!user){
@@ -112,7 +111,7 @@ app.post("/api/v1/signin", async (req: AuthenticatedRequest, res: Response) => {
         details: err.errors,
       });
     }
-    res.status(500).json({ error: "Internal server error" });
+    res.status(500).json({ error: "Internal server error", err });
   }
 });
 
@@ -138,6 +137,7 @@ app.get(
   userMiddleWare,
   async (req: AuthenticatedRequest, res: Response) => {
     const userId = req.userId;
+
     try {
       const Data = await ContentModel.find({ userId }).populate(
         "userId", "username"

@@ -3,7 +3,7 @@ import { Button } from "../Button";
 import axios from "axios";
 import { BACKEND_URL } from "../../config";
 import { useNavigate } from "react-router-dom";
-export default function SignUp() {
+export default function Signin() {
   const navigate = useNavigate();
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
