@@ -85,15 +85,23 @@ export default function AddContentPopUp(props:AddContentPopUpProps){
                         <div>Share the link</div>
                         <input type="text" className="input" ref = {linkRef}/>
                     </div>
+                    
                     <div>
-                        {type == 'post' &&<div className="text-slate-800/80 mt-4 mb-1">Take the following steps to add linkedin Post:
+                        {type == 'post' && <div className="text-slate-800/80 mt-4 mb-1">Take the following steps to add linkedin Post:
                         <ul className="list-disc ml-3">
                             <li>Click on Embed Post</li>
                             <li>Click on copy the link written src link which is  = "https://www.linkedin.com/embed/..."</li>
                             <li>Add this link</li>
                         </ul>
                         </div>
-                        }         
+                        }
+                        {type == 'video' && <div className="text-slate-800/80 mt-4 mb-1">Take the following steps to add linkedin Post:
+                        <ul className="list-disc ml-3">
+                            <li>Click on Share, then on embed</li>
+                            <li>Copy the src link which starts with "https://www.youtube.com...."</li>
+                            <li>Paste this link</li>
+                        </ul>
+                        </div>}         
                     </div>
                     <div className="my-2">
                         <button className="bg-black transition-all text-white text-lg font-mono w-full px-4 rounded-xl py-2 cursor-pointer hover:bg-white hover:border-2 hover:text-black" onClick={AddData}>

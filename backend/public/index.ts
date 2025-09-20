@@ -7,7 +7,7 @@ import cors from 'cors';
 import dotenv from "dotenv";
 dotenv.config();
 const JWT_PASS = process.env.JWT_SECRET || "SHcdbjbcksdckc";
-const PORT =3000;
+const PORT =process.env.PORT || 3000;
 interface AuthenticatedRequest extends Request {
   userId?: string,
   username?:string
@@ -127,7 +127,7 @@ app.post("/api/v1/content", userMiddleWare, async (req:AuthenticatedRequest, res
     }
     catch (err){
       res.status(503).json({
-        msg:"Server Error"
+        msg:"Server Error",
       })
     }
 });

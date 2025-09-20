@@ -82,7 +82,7 @@ export default function Dashboard() {
                     />
                   ) : (
                     <LinkCards
-                      key={item._id} //  Add key here too
+                      key={item._id}
                       type={item.type}
                       title={item.title}
                       description={item.description}

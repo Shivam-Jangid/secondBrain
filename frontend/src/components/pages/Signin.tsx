@@ -1,15 +1,18 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Button } from "../Button";
 import axios from "axios";
 import { BACKEND_URL } from "../../config";
 import { useNavigate } from "react-router-dom";
+import LabelledInput from "../labelledInput";
 export default function Signin() {
   const navigate = useNavigate();
-  const [email, setemail] = useState("");
-  const [password, setpassword] = useState("");
+  const passwordRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
   const [loading , setLoading] = useState(false);
   async function signin (){
     setLoading(true);
+    const password = passwordRef.current?.value;
+    const email = emailRef.current?.value;
     try{
         const res = await axios.post(`${BACKEND_URL}/api/v1/signin`, {
         email, 
@@ -20,33 +23,28 @@ export default function Signin() {
     console.log("signed in completely");
     const jwtToken = res.data.token;
     localStorage.setItem("token", jwtToken);
-    alert("Redirecting to your brain...");
     navigate('/dashboard');
     }
     else {
-      alert("invalid username or short password")
+      alert("invalid username or short password");
+      setLoading(false);
     }
     }
     catch(err){
       alert('invalid username or password');
+      setLoading(false);
     }
   }
   return (
-    <div className="min-h-screen bg-black/90 flex justify-center items-center">    
-    <div className="bg-gray-900 flex flex-col rounded-lg border border-slate-600 py-4 px-5">
-        <div className="text-3xl font-semibold text-white flex justify-center mt-2 mb-3">
+    <div className="min-h-screen font-roboto bg-black/90 flex justify-center z-10 items-center">   
+    {loading === true ? <div className="z-40 animate-bounce">
+        <div className="bg-black py-2 rounded-2xl px-5 text-white">Loading ... </div>
+      </div> : <div className="min-w-md z-20 flex flex-col bg-black rounded-2xl border border-gray-100/20 shadow-2xl py-4 px-8">
+        <div className="text-3xl font-semibold text-white/90 flex justify-center mt-2 mb-3">
             Sign In
         </div>
-        <span className="text-slate-100/80 font-light mb-1.5">Email</span>
-        <input className="border mb-3 font-light text-lg border-slate-100 rounded-md focus:border-sky-400 text-white/90 focus:outline focus:outline-sky-400 pl-2 py-0.5 " onChange={(e)=> {
-          setemail(e.target.value);
-        }} type="email" />
-      
-        <span className="text-slate-100/80 font-light mb-1.5">Password</span>
-        <input className="
-        border border-slate-100 text-lg rounded-md focus:border-sky-500 text-white/90 focus:outline focus:outline-sky-500 pl-1.5 py-0.5 mb-3" onChange={(e)=>{
-          setpassword(e.target.value);
-        }} type="password"/>
+        <LabelledInput type="email" title="Email" reference={emailRef} />
+        <LabelledInput title="Password" type="password" reference={passwordRef} />
         <div className="w-full">
         <Button text="Submit" loading = {loading} variants="light" onClick={signin} width="full" />
         <div className="flex items-center justify-center mt-2" >
@@ -56,7 +54,7 @@ export default function Signin() {
           }}>Sign up</button>
         </div>
         </div>
-    </div> 
+    </div>} 
     </div>
   )
 }

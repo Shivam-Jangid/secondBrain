@@ -17,5 +17,3 @@ function App() {
 }
 
 export default App;
-
-// startIcon={<ShareIcon size = "sm"/>}

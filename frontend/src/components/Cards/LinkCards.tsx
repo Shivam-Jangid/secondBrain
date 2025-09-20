@@ -16,13 +16,13 @@ interface linkProps {
 }
 function RenderPost (props:linkProps){
   const link = props.link;
-  return <iframe src={link} height="100%" width="100%" allowFullScreen title="Embedded post" frameBorder="0">
+  return <iframe src={link} height="100%" width="100%" title="Embedded post" frameBorder="0">
   </iframe>
 }
 
 function RenderLink (props:linkProps){
-  const linkEmbed = props.link.replace('youtu.be', 'www.youtube.com/embed').replace('feature=shared', '');
-  return <iframe width="100%" height="100%" src={linkEmbed} frameBorder="0"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen >
+const linkSrc = props.link;
+  return <iframe width="100%" height="100%" src={linkSrc} frameBorder="0"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen >
   </iframe>
 }
 export default function LinkCards(props: LinkCardProps) {
